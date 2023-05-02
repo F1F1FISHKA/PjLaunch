@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <title>PjLaunch IT! | Just Minecraft launcher</title>
+
+    <script src="static/alerty/alertify.min.js"></script>
+    <link rel="stylesheet" href="static/alerty/css/alertify.min.css" />
+    <link rel="stylesheet" href="static/alerty/css/themes/default.min.css" />
+    <link type="Image/x-icon" href="static/imgs/icon.png" rel="icon">
+    <script src="eel.js"></script>
+</head>
+<body>
+    <script src="static/js/main.js"></script>
+    <div id="wrapper">
+        <header id="header">
+            <h5> ¡PjLaunch!</h5>
+        </header>
+        <div id="content">
+            <div class="manager">
+                <div class="acc_manager">
+                    <h5>Менеджер Аккаунтов</h5>
+                    <select style="background-color:#373737;color: azure;" name="Accaunts" id="accaunts" size="5" onchange="accauntSelect()" class="form-select" multiple aria-label="multiple select example"></select>
+                    <div class="container-buttons">
+                        <button class="btn btn-secondary" style="width: 100px;" onclick="AccountAdd()">+</button>
+                        <button type="button" class="btn btn-secondary" style="width: 100px;" onclick="AccountRemove()">-</button>
+                    </div>
+                    <input class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="accName" id="accName" placeholder="Введите никнейм" >
+                </div>
+
+                
+            </div>
+            <div class="burger-menu">
+                <input id="menu-toggle" type="checkbox" />
+                <label class="menu-btn" for="menu-toggle">
+                <span></span>
+                </label>
+                
+                <ul class="menubox">
+                    <!-- menu -->
+                    <h5 style="margin-left: 200px;">Менеджер версий</h5>
+                    <div class="managers">
+                        
+                        <div class="releasesManager">
+                            
+                            <select style="background-color:#373737;color: azure;" onchange="releasesSelect()" name="Releases" size="5" id="releasesSelect" class="form-select releases" multiple aria-label="multiple select example"></select>
+                        </div>
+    
+                        <div class="snapshotsManager">
+
+                            <select style="background-color:#373737;color: azure;" onchange="snaphotsSelect()" name="snapshot" size="5" id="snapshotSelect" class="form-select releases" multiple aria-label="multiple select example"></select>
+                        </div>
+                        <button type="button" class="btn btn-secondary" style="width: 600px;" onclick="verInstall()">Установить</button>
+                        <button type="button" class="btn btn-danger" style="width: 600px;" onclick="verRemove()">Удалить</button>
+
+                    
+                        
+                    </div>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+        
+    <footer id="footer">
+        <button type="button" class="btn btn-success" onclick="gameStart()">Играть</button>
+            <select  id="verSelect" onchange="verSelect()" style="background-color: rgb(139, 139, 139);">
+                
+            </select>
+    </footer>
+</body>
+</html>
