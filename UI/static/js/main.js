@@ -1,15 +1,16 @@
-let version;
-let accaunt;
-let installversion;
+let version= "None";
+let accaunt= "None";
+let installversion= "None";
+let fabricInstallVersion = "None";
+let forgeInstallVersion = "None";
 
 eel.updInstalledVers()
 eel.verInstalledUpd()
 eel.accUpdate()
 eel.releaseAdd()
 eel.snapshotAdd()
-version = "None";
-accaunt = "None";
-installversion = "None";
+eel.fabricAdd()
+eel.forgeAdd()
 function verSelect() {
 	var sel=document.getElementById('verSelect').selectedIndex;
 	var options=document.getElementById('verSelect').options;
@@ -104,6 +105,27 @@ function snapshotAdd(id){
 	option.text = id;
 	x.add(option);
 }
+
+eel.expose(fabricAdd)
+function fabricAdd(id){
+	var x = document.getElementById("fabricSelect");
+	var option = document.createElement("option");
+	option.value = id;
+	option.text = id;
+	x.add(option);
+}
+
+
+eel.expose(forgeAdd)
+function forgeAdd(id){
+	var x = document.getElementById("forgeSelect");
+	var option = document.createElement("option");
+	option.value = id;
+	option.text = id;
+	x.add(option);
+}
+
+
 function releasesSelect() {
 	var sel=document.getElementById('releasesSelect').selectedIndex;
 	var options=document.getElementById('releasesSelect').options;
@@ -118,10 +140,49 @@ function verInstall(){
 	if (installversion == "None"){
 		err("Выберете версию, которую хотите установить")
 	}else{
-		eel.installVer(installversion)
-	}
+		eel.installVer(installversion)	
 }
-function verRemove(){
-	eel.removeVer(installversion)
 }
 
+function fabricSelect(){
+	var sel=document.getElementById('fabricSelect').selectedIndex;
+	var options=document.getElementById('fabricSelect').options;
+	fabricInstallVersion = options[sel].value;
+}
+
+function forgeSelect(){
+	var sel=document.getElementById('forgeSelect').selectedIndex;
+	var options=document.getElementById('forgeSelect').options;
+	forgeInstallVersion = options[sel].value;
+}
+
+function verRemove(){
+	if (version != 'None'){eel.removeVer(version)}
+	else{err("Выберете установленную версию, которую хотите удалить")}
+}
+eel.expose(instalationProgress)
+function instalationProgress(progress){
+	document.getElementById('installProgress').innerText = progress
+}
+eel.expose(instalationStatus)
+function instalationStatus(status){
+	document.getElementById('installStatus').innerText = status
+}
+eel.expose(update)
+function update(){
+	location.reload()
+}
+function fabricInstall(){
+	if (fabricInstallVersion != "None"){
+		eel.fabricInstall(fabricInstallVersion)
+	}else{
+		err("Выберете версию Fabric")
+	}
+}
+function forgeInstall(){
+	if (forgeInstallVersion != "None"){
+		eel.forgeInstall(forgeInstallVersion)
+	}else{
+		err("Выберете версию Forge")
+	}
+}

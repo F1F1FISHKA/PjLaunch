@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="static/css/bootstrap.css">
     <title>PjLaunch IT! | Just Minecraft launcher</title>
-
     <script src="static/alerty/alertify.min.js"></script>
     <link rel="stylesheet" href="static/alerty/css/alertify.min.css" />
     <link rel="stylesheet" href="static/alerty/css/themes/default.min.css" />
@@ -43,8 +42,18 @@
                 <ul class="menubox">
                     <!-- menu -->
                     <h5 style="margin-left: 200px;">Менеджер версий</h5>
+                    <h6>          Fabric                         Forge                     Release                     Snapshot</h6>
                     <div class="managers">
                         
+                        <div class="fabricManager">
+                            <select style="background-color:#373737;color: azure;" onchange="fabricSelect()" name="Fabric" size="5" id="fabricSelect" class="form-select fabric" multiple aria-label="multiple select example"></select>
+                            
+                        </div>
+
+                        <div class="forgeManager">
+                            <select style="background-color:#373737;color: azure;" onchange="forgeSelect()" name="Forge" size="5" id="forgeSelect" class="form-select forge" multiple aria-label="multiple select example"></select>
+                        </div>
+
                         <div class="releasesManager">
                             
                             <select style="background-color:#373737;color: azure;" onchange="releasesSelect()" name="Releases" size="5" id="releasesSelect" class="form-select releases" multiple aria-label="multiple select example"></select>
@@ -54,8 +63,14 @@
 
                             <select style="background-color:#373737;color: azure;" onchange="snaphotsSelect()" name="snapshot" size="5" id="snapshotSelect" class="form-select releases" multiple aria-label="multiple select example"></select>
                         </div>
-                        <button type="button" class="btn btn-secondary" style="width: 600px;" onclick="verInstall()">Установить</button>
+                        <div class="install_buttons">
+                            <button type="button" class="btn btn-secondary" style="width: 200px; float: left;" onclick="verInstall()">Установить Release/Snapshot</button>
+                            <button type="button" class="btn btn-secondary" style="width: 200px; float: left;" onclick="fabricInstall()">Установить Fabric</button>
+                            <button type="button" class="btn btn-secondary" style="width: 200px; float: left;" onclick="forgeInstall()">Установить Forge</button>
+                        </div>
                         <button type="button" class="btn btn-danger" style="width: 600px;" onclick="verRemove()">Удалить</button>
+                        <p id="installProgress">0/0</p>
+                        <P id="installStatus">Нет установок</P>
 
                     
                         

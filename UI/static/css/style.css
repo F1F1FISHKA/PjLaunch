@@ -138,17 +138,34 @@
 	float: left;
 }
 .releasesManager{
-	width: 200px;
+	width: 149px;
 	margin-top: 10px;
 	float: left;
-	margin-left: 90px;
+
 }
 .snapshotsManager{
-	width: 200px;
+	width: 149px;
 	margin-top: 10px;
 	float:left;
 
 }
+.fabricManager{
+	width: 149px;
+	margin-top: 10px;
+	float:left;
+
+}
+.forgeManager{
+	width: 149px;
+	margin-top: 10px;
+	float:left;
+
+}
+
 .manager :last-child { 
 	margin-right: 0px;/*Убираем поле последнего div-а*/
+}
+.install_buttons{
+	display: flex;
+	justify-content:left;
 }
