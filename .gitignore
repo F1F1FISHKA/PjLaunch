@@ -1,0 +1,10 @@
+BUILD.abt
+icon.ico
+PjLaunch!.spec
+PjLaunch.spec
+PjLaunch!/
+Minecraft/
+dist/
+build/
+__pycache__/
+config/

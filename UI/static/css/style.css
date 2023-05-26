@@ -1,0 +1,172 @@
+*{
+	width: 100vw;
+  }
+  html {
+	  height: 100%;
+  }
+  header, nav, section, article, aside, footer {
+	  display: block;
+  }
+  body {
+	height: 100%;
+		
+  }
+  #wrapper {
+	  color: #f4f4f4;
+	  margin: 0 auto;
+	  min-height: 100%;
+	  height: auto !important;
+	  height: 100%;
+	  background-color: #373737;
+	  
+	  
+  }
+  #header {
+	  height: 40px;
+	  background-color: #111111;
+	  color: #b6b6b6;
+	  text-align: center;
+  }
+
+
+  #footer {
+	color: #f4f4f4;
+	  margin: -63px auto 0;
+	  height: 63px;
+	  position: relative;
+	  background-color: #111111;
+  }
+  
+  /* Settings menu */
+  
+	.menu-btn{
+	  display: flex;
+	  align-items: center;
+	  position: absolute;
+	  top: 0;
+	  right:0;
+	  width: 26px;
+	  height: 26px;
+	  cursor: pointer;
+	  z-index: 1;
+	  margin-top: 5px;
+	  margin-right:5px;
+	  }
+	  .menu-btn > span,
+	  .menu-btn > span::before,
+	  .menu-btn > span::after {
+	  display: block;
+	  position: absolute;
+	  width: 100%;
+	  height: 2px;
+	  background-color: #616161;
+	  transition-duration: .25s;
+	  }
+	  .menu-btn > span::before {
+	  content: '';
+	  top: -8px;
+	  }
+	  .menu-btn > span::after {
+	  content: '';
+	  top: 8px;
+	  }
+	  
+	  .menubox{
+	  display: block;
+	  position: fixed;
+	  visibility: hidden;
+	  top: 0;
+	  left: -100%;
+	  width: 600px;
+	  height: 100%;
+	  margin: 0;
+	  padding: 80px 0;
+	  list-style: none;
+	  background-color: #616161;
+	  box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+	  transition-duration: .25s;
+	  }
+	  
+	  .menu-item {
+		padding-left: 5px;
+		padding-right: 5px;
+		width: 300px;
+	  }	
+	  /* .menu-item:hover {
+	  background-color: #CFD8DC;
+	  } */
+	  
+	  #menu-toggle{
+	  opacity: 0;
+	  }
+	  
+	  #menu-toggle:checked ~ .menu-btn > span{
+	  transform: rotate(45deg);
+	  }
+	  #menu-toggle:checked ~ .menu-btn > span::before{
+	  top: 0;
+	  transform: rotate(0);
+	  }
+	  #menu-toggle:checked ~ .menu-btn > span::after{
+	  top: 0;
+	  transform: rotate(90deg);
+	  }
+	  #menu-toggle:checked ~ .menubox{
+	  visibility: visible;
+	  left: 0;
+	  }
+  
+  #head_btns{
+	width: 40px;
+
+  }
+  .container-buttons {
+	display: flex;
+	justify-content:left;
+  }
+.manager{
+	width: 100vw;/*фиксируем ширину обертки*/ 
+	margin: 0 auto;
+	 height: 120px;/*Задаем высоту обертки*/
+
+}
+.input_nick{
+	width: 150px;
+}
+.acc_manager{
+	margin-top: 10px;
+	width: 200px;
+	float: left;
+}
+.releasesManager{
+	width: 149px;
+	margin-top: 10px;
+	float: left;
+
+}
+.snapshotsManager{
+	width: 149px;
+	margin-top: 10px;
+	float:left;
+
+}
+.fabricManager{
+	width: 149px;
+	margin-top: 10px;
+	float:left;
+
+}
+.forgeManager{
+	width: 149px;
+	margin-top: 10px;
+	float:left;
+
+}
+
+.manager :last-child { 
+	margin-right: 0px;/*Убираем поле последнего div-а*/
+}
+.install_buttons{
+	display: flex;
+	justify-content:left;
+}
