@@ -20,7 +20,7 @@ print("\n\nПосле закрытия этого окна лаунчер не �
 
 ## MINCRAFT SETTINGS
 minecraft_directory = "../Minecraft"
-confi_dir = "../config"
+config_dir = "../config"
 ui_dir = "UI"
 
 
@@ -37,6 +37,10 @@ except FileNotFoundError:
         os.mkdir(minecraft_directory)
     except OSError:
         raise Exception('Неудалось создать директорию Minecraft')
+
+### make config files:
+if not os.path.exists(config_dir):
+    os.mkdir(config_dir)
 
 def set_status(status: str):
     print(status)
@@ -60,18 +64,18 @@ def getAvailbleVersions():
     snapshots=[]
     forge=[]
     fabric = minecraft_launcher_lib.fabric.get_stable_minecraft_versions()
-    with open(f"{confi_dir}/available_versions.json", "w", encoding="UTF-8") as f:
+    with open(f"{config_dir}/available_versions.json", "w", encoding="UTF-8") as f:
         latest_versions = minecraft_launcher_lib.utils.get_available_versions(minecraft_directory=minecraft_directory)
         json.dump(latest_versions, f, ensure_ascii=False, indent=4)
 
-    with open(f"{confi_dir}/available_versions.json", encoding="UTF-8") as f:
+    with open(f"{config_dir}/available_versions.json", encoding="UTF-8") as f:
         data = json.load(f)
         for i in range(len(data)):
             if data[i]["type"] == "release":
                 releases.append(data[i]["id"])
             elif data[i]["type"] == "snapshot":
                 snapshots.append(data[i]["id"])
-    with open(f"{confi_dir}/available_versions.json", encoding="UTF-8") as f:
+    with open(f"{config_dir}/available_versions.json", encoding="UTF-8") as f:
         data = json.load(f)
         for i in range(len(releases)):
             if minecraft_launcher_lib.forge.find_forge_version(releases[i]) != None:
@@ -79,13 +83,13 @@ def getAvailbleVersions():
 
     
 
-    with open(f'{confi_dir}/releases.json', 'w') as f:  
+    with open(f'{config_dir}/releases.json', 'w') as f:  
         json.dump(releases, f, ensure_ascii=False, indent=4)
-    with open(f'{confi_dir}/snapshots.json', 'w') as f: 
+    with open(f'{config_dir}/snapshots.json', 'w') as f: 
         json.dump(snapshots, f, ensure_ascii=False, indent=4)     
-    with open(f'{confi_dir}/forge.json', 'w') as f: 
+    with open(f'{config_dir}/forge.json', 'w') as f: 
         json.dump(forge, f, ensure_ascii=False, indent=4) 
-    with open(f'{confi_dir}/fabric.json', 'w') as f: 
+    with open(f'{config_dir}/fabric.json', 'w') as f: 
         json.dump(fabric, f, ensure_ascii=False, indent=4)
 
 
@@ -95,12 +99,12 @@ getAvailbleVersions()
 
 @eel.expose
 def updInstalledVers():
-    with open(f"{confi_dir}/installedversions.json","w") as f:
+    with open(f"{config_dir}/installedversions.json","w") as f:
         json.dump(minecraft_launcher_lib.utils.get_installed_versions(minecraft_directory=minecraft_directory), f, ensure_ascii=False, indent=4)
 
 @eel.expose
 def verInstalledUpd():
-    with open(f"{confi_dir}/installedversions.json",encoding='utf8') as file:
+    with open(f"{config_dir}/installedversions.json",encoding='utf8') as file:
         installedVers  = json.load(file)
         eel.verSelectAdd("None","Выберете версию")
     for i in range(len(installedVers)):
@@ -109,7 +113,7 @@ def verInstalledUpd():
 
 @eel.expose
 def accSave(name):
-    with open(f"{confi_dir}/accaunts.json",'r+') as file:
+    with open(f"{config_dir}/accaunts.json",'r+') as file:
         file_data = json.load(file)
         file_data[name] = str(uuid.uuid4())
         file.seek(0)
@@ -117,7 +121,7 @@ def accSave(name):
 
 @eel.expose
 def accRemove(name):
-    with open(f"{confi_dir}/accaunts.json",'r+') as file:
+    with open(f"{config_dir}/accaunts.json",'r+') as file:
         try:
             file_data = json.load(file)
             accaunts = file_data['accaunts']
@@ -130,14 +134,14 @@ def accRemove(name):
             eel.err(f"Неудалось удалить {name}")
 @eel.expose
 def accUpdate():
-     with open(f"{confi_dir}/accaunts.json",encoding='utf8') as file:
+     with open(f"{config_dir}/accaunts.json",encoding='utf8') as file:
         file_data = json.load(file)
         accaunts = list(file_data.keys())
         for i in range(len(accaunts)):
             eel.accAdd(accaunts[i])
 @eel.expose
 def startGame(name,id):
-    with open(f"{confi_dir}/accaunts.json",encoding='utf8') as file:
+    with open(f"{config_dir}/accaunts.json",encoding='utf8') as file:
         file_data = json.load(file)
         accaunts = list(file_data.keys())
     options = minecraft_launcher_lib.utils.generate_test_options()
@@ -153,27 +157,27 @@ def end():
 
 @eel.expose
 def releaseAdd():
-    with open(f"{confi_dir}/releases.json") as f:
+    with open(f"{config_dir}/releases.json") as f:
         data = json.load(f)
         for i in range(len(data)):
             eel.releaseAdd(data[i])
 @eel.expose
 def fabricAdd():
-    with open(f"{confi_dir}/fabric.json") as f:
+    with open(f"{config_dir}/fabric.json") as f:
         data = json.load(f)
         for i in range(len(data)):
             eel.fabricAdd(data[i])
 
 @eel.expose
 def forgeAdd():
-    with open(f"{confi_dir}/forge.json") as f:
+    with open(f"{config_dir}/forge.json") as f:
         data = json.load(f)
         for i in range(len(data)):
             eel.forgeAdd(data[i])
 
 @eel.expose
 def snapshotAdd():
-    with open(f"{confi_dir}/snapshots.json") as f:
+    with open(f"{config_dir}/snapshots.json") as f:
         data = json.load(f)
         for i in range(len(data)):
             eel.snapshotAdd(data[i])
